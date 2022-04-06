@@ -1,0 +1,7 @@
+12345678910
+
+
+
+git config --global user.name "Katya"
+cd C:\Users\student-1581\Desktop\kate
+git init
