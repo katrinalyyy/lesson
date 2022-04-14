@@ -115,6 +115,46 @@ def main():
         if cmd == '0':
             end = True
         elif cmd == '1':
+            try:
+                name = input('Название песни:')
+                author = input('Автор/авторка песни:')
+                genre = input('Жанр песни:')
+                year = input('Год выпуска песни:')
+                duration = input('Длительность песни:')
+            except ValueError:
+                print('ЧТО-ТО ПОШЛО НЕ ТАК')
+        elif cmd == '2':
+            audioteka.get_list_songs()
+        elif cmd == '3':
+            print()
+            print('''Какую именно музыку найти:
+                    1) - по айди
+                    2) - по названию
+                    3) - по автору
+                    4) - по жанру
+                    5) - по году''')
+            print()
+            try:
+                poisk = int(input('Введите номер команды: '))
+                print()
+                if poisk == 1:
+                    audioteka.find_music_by_id()
+                elif poisk == 2:
+                    audioteka.find_music_by_name()
+                elif poisk == 3:
+                    audioteka.find_music_by_author()
+                elif poisk == 4:
+                    audioteka.find_music_by_genre()
+                elif poisk == 5:
+                    audioteka.find_music_by_year()
+            except ValueError:
+                print('ЧТО-ТО ПОШЛО НЕ ТАК')
+        elif cmd == '4':
+            audioteka.max_duration_song()
+        elif cmd == '5':
+            audioteka.min_duration_song()
+    print()
+
 
 
 if __name__ == '__main__':
