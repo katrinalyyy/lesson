@@ -23,6 +23,30 @@ class Audioteka:
     def load_music(self, music: List[Music]):
         self.music = music
 
+        def add_music(self):
+            pass
+
+    def get_list_songs(self):
+        pass
+
+    def find_music_by_id(self):
+        pass
+
+    def find_music_by_genre(self):
+        pass
+
+    def find_music_by_author(self):
+        pass
+
+    def find_music_by_year(self):
+        pass
+
+    def max_duration_song(self):
+        pass
+
+    def min_duration_song(self):
+        pass
+
 
 def load_data(library: Audioteka):
     if os.path.exists('database_users.dat'):
@@ -42,3 +66,23 @@ def save(file_name: str, data: List):
         pickle.dump(len(data), f)
         for item in data:
             pickle.dump(item, f)
+
+
+def main():
+    audioteka = load_data(Audioteka())
+    ok = False
+    while not ok:
+        print('''Постижимые команды:
+        1) - Добавить песню в аудиотеку
+        2) - Вывести список всех песен
+        3) - Найти музыку
+        4) - Самая длинная песня
+        5) - Самая короткая песня''')
+        cmd = input('Введите номер команды: ')
+        if cmd == '0':
+            end = True
+        elif cmd == '1':
+
+
+if __name__ == '__main__':
+    main()
