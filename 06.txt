@@ -5,3 +5,4 @@
 git config --global user.name "Katya"
 cd C:\Users\student-1581\Desktop\kate
 git init
+1111111111111111111111
