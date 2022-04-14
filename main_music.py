@@ -4,7 +4,9 @@ from typing import List
 
 
 class Music:
-def __init__(self, id: int, name:str, author:str, genre: str, year: int, duration: str):
+
+
+    def __init__(self, id: int, name: str, author: str, genre: str, year: int, duration: str):
         self.id = id
         self.name = name
         self.author = author
@@ -12,3 +14,6 @@ def __init__(self, id: int, name:str, author:str, genre: str, year: int, duratio
         self.year = year
         self.duration = duration
 
+
+    def __str__(self):
+        return f'{self.id} - "{self.name}" {self.author} {self.genre} {self.year} {self.duration}'
