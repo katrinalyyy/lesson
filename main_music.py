@@ -18,6 +18,7 @@ class Music:
 
 class Audioteka:
     def __init__(self):
+        self.music = None
         self.books: List[Music] = []
 
     def load_music(self, music: List[Music]):
@@ -37,6 +38,12 @@ class Audioteka:
     def find_music_by_id(self, input_id: int):
         for i in self.music:
             if i.id == input_id:
+                print(i)
+        print('--------------')
+
+    def find_music_by_name(self, input_name: str):
+        for i in self.music:
+            if i.name == input_name:
                 print(i)
         print('--------------')
 
@@ -67,7 +74,7 @@ class Audioteka:
                 max_duration = int(self.music[i].duration.split(':')[0]) * 60 + int(
                     self.music[i].duration.split(':')[1])
                 result_music = self.music[i]
-        return result_music
+        print(result_music)
 
     def min_duration_song(self):
         min_duration = int(self.music[0].duration.split(':')[0]) * 60 + int(self.music[0].duration.split(':')[1])
@@ -78,20 +85,21 @@ class Audioteka:
                 min_duration = int(self.music[i].duration.split(':')[0]) * 60 + int(
                     self.music[i].duration.split(':')[1])
                 result_music = self.music[i]
-        return result_music
+        print(result_music)
 
 
-def load_data(library: Audioteka):
-    if os.path.exists('database_users.dat'):
+def load_data(audioteka: Audioteka):
+    if os.path.exists('database_music.dat'):
         with open('database_music.dat', 'rb') as f:
             size = pickle.load(f)
             music = []
             for i in range(size):
                 music.append(pickle.load(f))
-            library.load_music(music)
+            audioteka.load_music(music)
     else:
         with open('database_music.dat', 'wb') as f:
             pickle.dump(0, f)
+    return audioteka
 
 
 def save(file_name: str, data: List):
@@ -110,17 +118,20 @@ def main():
         2) - Вывести список всех песен
         3) - Найти музыку
         4) - Самая длинная песня
-        5) - Самая короткая песня''')
+        5) - Самая короткая песня
+        0) - Выход''')
         cmd = input('Введите номер команды: ')
         if cmd == '0':
-            end = True
+            ok = True
         elif cmd == '1':
             try:
                 name = input('Название песни:')
                 author = input('Автор/авторка песни:')
                 genre = input('Жанр песни:')
-                year = input('Год выпуска песни:')
+                year = int(input('Год выпуска песни:'))
                 duration = input('Длительность песни:')
+                audioteka.add_music(name, author, genre, year, duration)
+                save('database_music.dat', audioteka.music)
             except ValueError:
                 print('ЧТО-ТО ПОШЛО НЕ ТАК')
         elif cmd == '2':
@@ -138,15 +149,15 @@ def main():
                 poisk = int(input('Введите номер команды: '))
                 print()
                 if poisk == 1:
-                    audioteka.find_music_by_id()
+                    audioteka.find_music_by_id(int(input('Введите id: ')))
                 elif poisk == 2:
-                    audioteka.find_music_by_name()
+                    audioteka.find_music_by_name(input('Введите название: '))
                 elif poisk == 3:
-                    audioteka.find_music_by_author()
+                    audioteka.find_music_by_author(input('Введите автора: '))
                 elif poisk == 4:
-                    audioteka.find_music_by_genre()
+                    audioteka.find_music_by_genre(input('Введите жанр: '))
                 elif poisk == 5:
-                    audioteka.find_music_by_year()
+                    audioteka.find_music_by_year(int(input('Введите год: ')))
             except ValueError:
                 print('ЧТО-ТО ПОШЛО НЕ ТАК')
         elif cmd == '4':
@@ -154,7 +165,6 @@ def main():
         elif cmd == '5':
             audioteka.min_duration_song()
     print()
-
 
 
 if __name__ == '__main__':
