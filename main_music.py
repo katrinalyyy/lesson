@@ -159,7 +159,7 @@ def main():
                 elif poisk == 5:
                     audioteka.find_music_by_year(int(input('Введите год: ')))
             except ValueError:
-                print('ЧТО-ТО ПОШЛО НЕ ТАК')
+                print('МОЯ ЛЮБИМАЯ ПЕСНЯ - Blue moon ($NOT)')
         elif cmd == '4':
             audioteka.max_duration_song()
         elif cmd == '5':
