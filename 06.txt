@@ -1,9 +1,0 @@
-12345678910
-
-
-
-git config --global user.name "Katya"
-cd C:\Users\student-1581\Desktop\kate
-git init
-3333333333333333333
-1111111111111111111111
