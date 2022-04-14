@@ -23,29 +23,62 @@ class Audioteka:
     def load_music(self, music: List[Music]):
         self.music = music
 
-        def add_music(self):
-            pass
+    def add_music(self, name: str, author: str, genre: str, year: int, duration: str):
+        id = 1
+        if self.music:
+            id = self.music[-1].id + 1
+        self.music.append(Music(id, name, author, genre, year, duration))
 
     def get_list_songs(self):
-        pass
+        for music in self.music:
+            print(music)
+        print('--------------')
 
-    def find_music_by_id(self):
-        pass
+    def find_music_by_id(self, input_id: int):
+        for i in self.music:
+            if i.id == input_id:
+                print(i)
+        print('--------------')
 
-    def find_music_by_genre(self):
-        pass
+    def find_music_by_genre(self, input_genre: str):
+        for i in self.music:
+            if i.genre == input_genre:
+                print(i)
+        print('--------------')
 
-    def find_music_by_author(self):
-        pass
+    def find_music_by_author(self, input_author: str):
+        for i in self.music:
+            if i.author == input_author:
+                print(i)
+        print('--------------')
 
-    def find_music_by_year(self):
-        pass
+    def find_music_by_year(self, input_year: int):
+        for i in self.music:
+            if i.year == input_year:
+                print(i)
+        print('--------------')
 
     def max_duration_song(self):
-        pass
+        max_duration = int(self.music[0].duration.split(':')[0]) * 60 + int(self.music[0].duration.split(':')[1])
+        result_music = self.music[0]
+        for i in range(len(self.music)):
+            if int(self.music[i].duration.split(':')[0]) * 60 + int(
+                    self.music[i].duration.split(':')[1]) > max_duration:
+                max_duration = int(self.music[i].duration.split(':')[0]) * 60 + int(
+                    self.music[i].duration.split(':')[1])
+                result_music = self.music[i]
+        return result_music
 
     def min_duration_song(self):
-        pass
+        min_duration = int(self.music[0].duration.split(':')[0]) * 60 + int(self.music[0].duration.split(':')[1])
+        result_music = self.music[0]
+        for i in range(len(self.music)):
+            if int(self.music[i].duration.split(':')[0]) * 60 + int(
+                    self.music[i].duration.split(':')[1]) < min_duration:
+                min_duration = int(self.music[i].duration.split(':')[0]) * 60 + int(
+                    self.music[i].duration.split(':')[1])
+                result_music = self.music[i]
+        return result_music
 
 
 def load_data(library: Audioteka):
