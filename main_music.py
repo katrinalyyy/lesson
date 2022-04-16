@@ -1,6 +1,5 @@
 import os.path
 import pickle
-from typing import List
 
 
 class Music:
@@ -18,9 +17,9 @@ class Music:
 
 class Audioteka:
     def __init__(self):
-        self.music: List[Music] = []
+        self.music: list[Music] = []
 
-    def load_music(self, music: List[Music]):
+    def load_music(self, music: list[Music]):
         self.music = music
 
     def add_music(self, name: str, author: str, genre: str, year: int, duration: str):
@@ -101,7 +100,7 @@ def load_data(audioteka: Audioteka):
     return audioteka
 
 
-def save(file_name: str, data: List):
+def save(file_name: str, data: list):
     with open(file_name, 'wb') as f:
         pickle.dump(len(data), f)
         for item in data:
