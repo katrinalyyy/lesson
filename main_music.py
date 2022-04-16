@@ -18,8 +18,7 @@ class Music:
 
 class Audioteka:
     def __init__(self):
-        self.music = None
-        self.books: List[Music] = []
+        self.music: List[Music] = []
 
     def load_music(self, music: List[Music]):
         self.music = music
